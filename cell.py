@@ -1,3 +1,4 @@
+from os import system
 from tkinter import Button, Label
 import random
 import settings
@@ -50,8 +51,16 @@ class Cell:
             self.show_cell()
             # If Mines count is equal to the cells left count, player won
             if Cell.cell_count == settings.MINES_COUNT:
-                buttons = Buttons(["YAY!", "Ok"], default_button="YAY!", cancel_button="Ok")
+                button_one = "YAY!"
+                button_two = "Restart!"
+                buttons = Buttons([button_one, button_two])
                 result = Dialog("Congratulations! You won the game!").with_buttons(buttons).show()
+
+            if result.button_returned == button_one:
+                sys.exit()
+            elif result.button_returned == button_two:
+                command = "python3 /Users/georgenasseem/Documents/Coding/MineSweeper/main.py"
+                system(command)
                 sys.exit()
 
         # Cancel Left and Right click events if cell is already opened:
@@ -109,9 +118,17 @@ class Cell:
 
     def show_mine(self):
         self.cell_btn_object.configure(highlightbackground="red")
-        buttons = Buttons(["NOOO!", "Ok"], default_button="NOOO!", cancel_button="Ok")
-        result = Dialog("You lost! You clicked on a mine :(").with_buttons(buttons).show()
-        sys.exit()
+        button_one = "NOO!"
+        button_two = "Restart!"
+        buttons = Buttons([button_one, button_two])
+        result = Dialog("You lost! You clicked on a mine!").with_buttons(buttons).show()
+
+        if result.button_returned == button_one:
+            sys.exit()
+        elif result.button_returned == button_two:
+            command = "python3 /Users/georgenasseem/Documents/Coding/MineSweeper/main.py"
+            system(command)
+            sys.exit()
 
 
     def right_click_actions(self, event):
