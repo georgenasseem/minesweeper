@@ -23,8 +23,8 @@ class Cell:
     def create_btn_object(self, location):
         btn = Button(
             location,
-            width=12,
-            height=4,
+            width=settings.CELL_WIDTH,
+            height=settings.CELL_HEIGHT,
         )
         btn.bind('<Button-1>', self.left_click_actions ) # Left Click
         btn.bind('<Button-2>', self.right_click_actions ) # Right Click
