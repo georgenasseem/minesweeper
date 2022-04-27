@@ -30,17 +30,6 @@ class Cell:
         btn.bind('<Button-2>', self.right_click_actions ) # Right Click
         self.cell_btn_object = btn
 
-    @staticmethod
-    def create_cell_count_label(location):
-        lbl = Label(
-            location,
-            bg='black',
-            fg='white',
-            text=f"Cells Left:{Cell.cell_count}",
-            font=("", 30)
-        )
-        Cell.cell_count_label_object = lbl
-
     def left_click_actions(self, event):
         if self.is_mine:
             self.show_mine()
@@ -100,7 +89,6 @@ class Cell:
 
     def show_cell(self):
         if not self.is_opened:
-            Cell.cell_count -= 1
             self.cell_btn_object.configure(text=self.surrounded_cells_mines_length)
             # Replace the text of cell count label with the newer count
             if Cell.cell_count_label_object:
